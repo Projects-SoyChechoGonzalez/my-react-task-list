@@ -1,13 +1,11 @@
 import {Task} from '../Task/Task.jsx';
 
-export const TaskList = () => {
+export const TaskList = ({taskList, setTaskList}) => {
 	return (
 		<div>
-			<Task/>
-			<Task/>
-			<Task/>
-			<Task/>
-			<Task/>
+			{taskList.map((task) => (
+				<Task key={task.id} task={task} taskList={taskList} setTaskList={setTaskList}/>
+			))}
 		</div>
 	);
 };
