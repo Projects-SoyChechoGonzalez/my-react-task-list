@@ -4,23 +4,15 @@ import {IoIosSave} from 'react-icons/io';
 
 import styles from './Task.module.css';
 import {useState} from 'react';
+import {useTask} from '../../../hooks/useTask.jsx';
 
-export const Task = ({task, taskList, setTaskList}) => {
+export const Task = ({task, taskList, setTaskList, input, setInput,}) => {
 	const [edit, setEdit] = useState(false);
-	const [editedText, setEditedText] = useState(task.task);
+	const [editedText, setEditedText] = useState(task.title);
+	const {removeTask, updateTask} = useTask(input, setInput, taskList, setTaskList, task, editedText);
 	
 	const handleSaveEdit = () => {
-		setTaskList(
-			taskList.map((item) => {
-				if (item.id === task.id) {
-					return {
-						...item,
-						task: editedText,
-					};
-				}
-				return item;
-			}),
-		);
+		setTaskList(updateTask);
 		setEdit(false);
 	};
 	
@@ -29,7 +21,7 @@ export const Task = ({task, taskList, setTaskList}) => {
 	};
 	
 	const handleRemove = () => {
-		setTaskList(taskList.filter((item) => item.id !== task.id));
+		setTaskList(removeTask);
 	};
 	
 	return (
@@ -49,7 +41,7 @@ export const Task = ({task, taskList, setTaskList}) => {
 						minLength={3}
 					/>
 				) : (
-					<span data-testid="todoTitle">{task.task}</span>
+					<span data-testid="todoTitle">{task.title}</span>
 				)}
 				<div>
 					{edit ? (

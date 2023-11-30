@@ -1,34 +1,19 @@
 import {MdOutlineAdd} from 'react-icons/md';
-import {useEffect} from 'react';
+import {useTask} from '../../../hooks/useTask.jsx';
 
 
 const Header = ({input, setInput, taskList, setTaskList}) => {
-	
-	
-	const inputData = {
-		id: new Date().getTime(),
-		task: input,
-		completed: false,
-	};
+	const {addTask} = useTask(input, setInput, taskList, setTaskList);
 	
 	const handleChange = (event) => {
 		event.preventDefault();
 		setInput(event.target.value);
-		
 	};
 	
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		
-		if (input) {
-			setTaskList([inputData, ...taskList]);
-			setInput('');
-		}
+		setTaskList(addTask);
 	};
-	
-	useEffect(() => {
-		localStorage.setItem('taskList', JSON.stringify(taskList));
-	}, [taskList]);
 	
 	return (
 		<div>
