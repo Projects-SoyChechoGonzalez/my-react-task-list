@@ -1,0 +1,12 @@
+.taskContainer {
+	display: flex;
+	width: 500px;
+	margin: 0 auto;
+	
+	& .content {
+		display: flex;
+		justify-content: space-between;
+		flex-grow: 1;
+	}
+}
+
