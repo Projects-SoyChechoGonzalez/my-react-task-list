@@ -10,6 +10,7 @@ export const Layout = ({children}) => {
 			gap: '1.5rem'
 		}}>
 			<Menu/>
+			
 			{children}
 		</section>
 	);
