@@ -1,20 +1,25 @@
 import './App.css';
-import {Header} from './components/Header/Header.jsx';
-import {TaskList} from './components/TaskList/TaskList.jsx';
-import {useState} from 'react';
-import {useLocalStorage} from '../hooks/useLocalStorage.jsx';
+import {Layout} from './components/layout.jsx';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Home} from './pages/Home/Home.jsx';
+import {TareasPage} from './pages/Tareas/Tareas.jsx';
+import {SobreNosotros} from './pages/SobreNosotros/SobreNosotros.jsx';
 
 function App() {
 	
-	const {getLocalStorage} = useLocalStorage('taskList');
-	const [input, setInput] = useState('');
-	const [taskList, setTaskList] = useState(getLocalStorage());
 	
 	return (
-		<div className="app">
-			<Header input={input} setInput={setInput} taskList={taskList} setTaskList={setTaskList}/>
-			<TaskList taskList={taskList} setTaskList={setTaskList} input={input} setInput={setInput}/>
-		</div>
+		<BrowserRouter>
+			<Layout>
+				<Routes>
+					<Route path="/" element={<Home/>}/>
+					
+					<Route path="/tasks" element={<TareasPage/>}/>
+					<Route path="/about" element={<SobreNosotros/>}/>
+				</Routes>
+			</Layout>
+		</BrowserRouter>
+	
 	);
 }
 
