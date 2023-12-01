@@ -1,5 +1,6 @@
 import {MdOutlineAdd} from 'react-icons/md';
 import {useTask} from '../../../hooks/useTask.jsx';
+import {Input} from '@chakra-ui/react';
 
 
 const Header = ({input, setInput, taskList, setTaskList}) => {
@@ -17,11 +18,9 @@ const Header = ({input, setInput, taskList, setTaskList}) => {
 	
 	return (
 		<div>
-			<h1>
-				Todo App
-			</h1>
 			<form onSubmit={handleSubmit}>
-				<input
+				<Input
+					width="400px"
 					aria-label="Agregar tarea"
 					onChange={handleChange}
 					type="text"
@@ -29,7 +28,7 @@ const Header = ({input, setInput, taskList, setTaskList}) => {
 					value={input}
 					required
 				/>
-				<button>
+				<button style={{padding: '8px'}}>
 					<MdOutlineAdd/>
 				</button>
 			</form>

@@ -5,6 +5,7 @@ import {IoIosSave} from 'react-icons/io';
 import styles from './Task.module.css';
 import {useState} from 'react';
 import {useTask} from '../../../hooks/useTask.jsx';
+import {Box, Checkbox, Input, Stack, Text} from '@chakra-ui/react';
 
 export const Task = ({task, taskList, setTaskList, input, setInput,}) => {
 	const [edit, setEdit] = useState(false);
@@ -25,11 +26,11 @@ export const Task = ({task, taskList, setTaskList, input, setInput,}) => {
 	};
 	
 	return (
-		<div className={styles.taskContainer}>
-			<input type="checkbox"/>
-			<div className={styles.content}>
+		<Stack gap={4} direction="row" className={styles.taskContainer}>
+			<Checkbox size="md" colorScheme="green"/>
+			<Box className={styles.content} alignItems="center" direction="column">
 				{edit ? (
-					<input
+					<Input
 						aria-label="todo"
 						data-testid="editInput"
 						type="text"
@@ -41,26 +42,26 @@ export const Task = ({task, taskList, setTaskList, input, setInput,}) => {
 						minLength={3}
 					/>
 				) : (
-					<span data-testid="todoTitle">{task.title}</span>
+					<Text fontSize="16px">{task.title}</Text>
 				)}
-				<div>
+				<Box>
 					{edit ? (
 						
 						<button onClick={handleSaveEdit}>
-							<IoIosSave/>
+							<IoIosSave fontSize="24px"/>
 						</button>
 					) : (
-						<div>
+						<Stack direction="row">
 							<button onClick={handleEdit}>
-								<FaRegEdit/>
+								<FaRegEdit fontSize="24px"/>
 							</button>
 							<button onClick={handleRemove}>
-								<TfiTrash/>
+								<TfiTrash fontSize="24px"/>
 							</button>
-						</div>
+						</Stack>
 					)}
-				</div>
-			</div>
-		</div>
+				</Box>
+			</Box>
+		</Stack>
 	);
 };
