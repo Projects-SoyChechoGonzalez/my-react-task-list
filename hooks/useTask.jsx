@@ -10,7 +10,7 @@ export const useTask = (input, setInput, taskList, setTaskList, task = {}, edite
 	};
 	
 	const addTask = () => {
-		if (input) {
+		if (input && setTaskList) {
 			setTaskList([inputData, ...taskList]);
 			setInput('');
 		}
@@ -32,7 +32,7 @@ export const useTask = (input, setInput, taskList, setTaskList, task = {}, edite
 	const {setLocalStorage} = useLocalStorage('taskList', taskList);
 	useEffect(() => {
 		setLocalStorage(taskList);
-	}, [setLocalStorage]);
+	}, [taskList, setLocalStorage]);
 	
 	return {
 		addTask,

@@ -13,7 +13,8 @@ const Header = ({input, setInput, taskList, setTaskList}) => {
 	
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		setTaskList(addTask);
+		// setTaskList(addTask);
+		addTask();
 	};
 	
 	return (
